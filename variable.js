@@ -11,7 +11,7 @@ var a = 12; //declare and initialize(initialize means first value assign)
 // var: Older way to declare variables:
 var age = 20;
 age = 21;       // allowed
-var age = 22;   // also allowed
+// var age = 22;   // also allowed
 
 //The important issue is that var is function-scoped, not block-scoped:
 function abcd(){
@@ -20,7 +20,7 @@ function abcd(){
     }  
 }  //  var function-scoped howar karone, var ke funtion er jekono jaiga theke access kora jai that is another problem, 
  
-console.log(x); // 10
+//console.log(x); // 10
 
 
 
@@ -34,19 +34,18 @@ score = 20; // allowed
 if (true) {
     let x = 10;
 }
-console.log(x); // ReferenceError
+// // console.log(x); // ReferenceError
 
 //And you can't redeclare it in the same scope:
 
-let age = 20;
-let age = 30; // SyntaxError
+// let age = 20;
+// let age = 30; // SyntaxError
 
 
 // const: Use const when the variable should not be reassigned:
 
 const name = "John";
-
-name = "Sam"; // TypeError
+// name = "Sam"; // TypeError
 // One important detail: with objects and arrays, const prevents reassignment, not modification:
 
 const user = {
@@ -54,20 +53,17 @@ const user = {
 };
 
 user.name = "Sam"; // ✅ allowed
-But:
 
-user = {}; // ❌ TypeError
-
-
+//But: //user = {}; // ❌Uncaught TypeError: Assignment to constant variable.
 //Easy rule to remember
 //Use const by default. Use let when you know the variable needs to change. Generally avoid var in modern JavaScript.
 
-const name = "Alex"; // doesn't need reassignment
-let score = 0;       // will change
+//const name = "Alex"; // doesn't need reassignment
+//let score = 0;       // will change
+//score++;
 
-score++;
 
-//So, in modern JS: const → first choice, let → when reassignment is needed, var → legacy code.
+
 
 
 //***Scope (global, block {}, functional)*/ 
@@ -103,39 +99,41 @@ function abcd (){
 
 // reassignment, redeclaration
 
-var a = 12 
-a = 31;
+// var a = 12 
+// a = 31;
 
-var a = 22 // var a = 22, redeclare with var its allowed in js; 
+// var a = 22 // var a = 22, redeclare with var its allowed in js; 
 
-let b = 12;
-b = 32;
+// let b = 12;
+// b = 32;
 
-let b = 220; // let a = 220, redeclare with let its not possible or allowed in js, UnCaught erro occured in browser;
+// let b = 20; // let b = 20, redeclare with let its not possible or allowed in js, UnCaught erro occured in browser;
 
 
 
 
 //*** Temporal Dead Zone (TDZ) */
 
-// The Temporal Dead Zone is the period between entering a scope and the point where a let or const variable is declared. During this period, you cannot access the variable.
+// The Temporal Dead Zone is the period between entering a scope and the point where a let or const variable is declared. 
+// During this period, you cannot access the variable.
+// Example
+// console.log(age); // ❌ ReferenceError
 
-Example
-console.log(age); // ❌ ReferenceError
-
-let age = 25;
-// Here, age exists in the scope due to hoisting, but it cannot be accessed before its declaration. The area from the start of the scope until let age is the Temporal Dead Zone.
+//let age = 25;
+// Here, age exists in the scope due to hoisting, but it cannot be accessed before its declaration. 
+// The area from the start of the scope until let age is the Temporal Dead Zone.
 
 // Compare with var
-console.log(age); // undefined
+// console.log(age); // undefined
 
-var age = 25;
+//var age = 25;
 //var is hoisted and initialized with undefined, so accessing it before the declaration doesn't cause a TDZ error.
 
 // const also has TDZ
-console.log(name); // ❌ ReferenceError
+// console.log(name); // ❌ ReferenceError
+// const name = "Alex";
 
-const name = "Alex";
+
 
 // Easy way to remember
 // let / const
@@ -161,41 +159,42 @@ const name = "Alex";
 // const-> hoist -> x
 
 // 1. var
-console.log(x);
+//console.log(x);
 
-var x = 10;
-Output: undefined
+// var x = 10; // Output: undefined
 
 //Conceptually, JavaScript treats it roughly like:
+// var x;
+// console.log(x); // undefined
 
-var x;
-console.log(x); // undefined
-
-x = 10;
+// x = 10;
 //So var is hoisted and initialized with undefined.
 
 //2. let
-console.log(x); // ❌ ReferenceError
+//console.log(x); // ❌ ReferenceError
 
-let x = 10;
+//let x = 10;
 //let is hoisted, but not initialized.
 
-Conceptually:
+// Conceptually:
 
 // x exists, but is in TDZ
+// x is not initialized until the line let x = 10; is executed.
+// console.log(x); // ❌ Cannot access before initialization
 
-console.log(x); // ❌ Cannot access before initialization
-
-let x = 10;     // TDZ ends here
+// let x = 10;     // TDZ ends here
 //That's the Temporal Dead Zone.
 
 //3. const
 // const behaves like let regarding hoisting:
 
-console.log(x); // ❌ ReferenceError
+//console.log(x); // ❌ ReferenceError
 
-const x = 10;
+// const x = 10;
 // It is hoisted but remains in the TDZ until the declaration is reached.
 
 
 // In short: var gives you undefined; let and const give you a TDZ error before declaration.
+
+
+
